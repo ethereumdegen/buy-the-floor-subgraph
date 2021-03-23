@@ -1,7 +1,7 @@
-import { BuyTheFloorEvent, SignatureBurnedEvent } from '../generated/BuyTheFloorContract/BuyTheFloor'
+import { BuyTheFloor, SignatureBurned } from '../generated/BuyTheFloorContract/BuyTheFloorContract'
 import { BoughtTheFloor, BurnedSignature } from '../generated/schema'
 
-export function handleNewBoughtTheFloor(event: BuyTheFloorEvent): void {
+export function handleNewBoughtTheFloor(event: BuyTheFloor): void {
    
   let bought = new BoughtTheFloor(event.transaction.hash.toHexString())
   bought.bidderAddress = event.params.bidderAddress
@@ -14,7 +14,7 @@ export function handleNewBoughtTheFloor(event: BuyTheFloorEvent): void {
  
 }
 
-export function handleBurnedSignature(event: SignatureBurnedEvent): void {
+export function handleBurnedSignature(event: SignatureBurned): void {
  
 
   let sig = new BurnedSignature(event.transaction.hash.toHexString())

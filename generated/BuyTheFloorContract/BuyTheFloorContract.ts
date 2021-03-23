@@ -10,16 +10,16 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class BuyTheFloorEvent extends ethereum.Event {
+export class BuyTheFloor extends ethereum.Event {
   get params(): BuyTheFloor__Params {
     return new BuyTheFloor__Params(this);
   }
 }
 
 export class BuyTheFloor__Params {
-  _event: BuyTheFloorEvent;
+  _event: BuyTheFloor;
 
-  constructor(event: BuyTheFloorEvent) {
+  constructor(event: BuyTheFloor) {
     this._event = event;
   }
 
@@ -70,16 +70,16 @@ export class OwnershipTransferred__Params {
   }
 }
 
-export class SignatureBurnedEvent extends ethereum.Event {
+export class SignatureBurned extends ethereum.Event {
   get params(): SignatureBurned__Params {
     return new SignatureBurned__Params(this);
   }
 }
 
 export class SignatureBurned__Params {
-  _event: SignatureBurnedEvent;
+  _event: SignatureBurned;
 
-  constructor(event: SignatureBurnedEvent) {
+  constructor(event: SignatureBurned) {
     this._event = event;
   }
 
@@ -92,9 +92,9 @@ export class SignatureBurned__Params {
   }
 }
 
-export class BuyTheFloor extends ethereum.SmartContract {
-  static bind(address: Address): BuyTheFloor {
-    return new BuyTheFloor("BuyTheFloor", address);
+export class BuyTheFloorContract extends ethereum.SmartContract {
+  static bind(address: Address): BuyTheFloorContract {
+    return new BuyTheFloorContract("BuyTheFloorContract", address);
   }
 
   _chain_id(): BigInt {
