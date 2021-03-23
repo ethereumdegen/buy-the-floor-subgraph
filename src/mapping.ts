@@ -1,16 +1,31 @@
-import { NewGravatar, UpdatedGravatar } from '../generated/Gravity/Gravity'
-import { Gravatar } from '../generated/schema'
+import { BuyTheFloorEvent, SignatureBurnedEvent } from '../generated/BuyTheFloorContract/BuyTheFloor'
+import { BoughtTheFloor, BurnedSignature } from '../generated/schema'
 
-export function handleNewGravatar(event: NewGravatar): void {
-  let gravatar = new Gravatar(event.params.id.toHex())
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+export function handleNewBoughtTheFloor(event: BuyTheFloorEvent): void {
+   
+  let bought = new BoughtTheFloor(event.transaction.hash.toHexString())
+  bought.bidderAddress = event.params.bidderAddress
+  bought.sellerAddress = event.params.sellerAddress
+  bought.nftContractAddress = event.params.nftContractAddress
+  bought.currencyTokenAddress = event.params.currencyTokenAddress
+  bought.currencyTokenAmount = event.params.currencyTokenAmount
+  bought.blockNumber = event.block.number
+  bought.save()
+ 
 }
 
-export function handleUpdatedGravatar(event: UpdatedGravatar): void {
-  let id = event.params.id.toHex()
+export function handleBurnedSignature(event: SignatureBurnedEvent): void {
+ 
+
+  let sig = new BurnedSignature(event.transaction.hash.toHexString())
+  sig.bidderAddress = event.params.bidderAddress
+  sig.hash = event.params.hash
+
+
+
+  sig.save()
+
+ /* let id = event.params.id.toHex()
   let gravatar = Gravatar.load(id)
   if (gravatar == null) {
     gravatar = new Gravatar(id)
@@ -18,5 +33,22 @@ export function handleUpdatedGravatar(event: UpdatedGravatar): void {
   gravatar.owner = event.params.owner
   gravatar.displayName = event.params.displayName
   gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+  gravatar.save()*/
 }
+
+/*
+type BoughtTheFloor @entity {
+  id: ID!
+  bidder: Address!
+  seller: Address! 
+  nftContractAddress: Address!
+  currencyTokenAddress: Address!
+  currencyTokenAmount: Integer! 
+}
+
+type SignatureBurned @entity {
+  id: ID!
+  bidder: Address!
+  hash: Bytes32!  
+}
+*/

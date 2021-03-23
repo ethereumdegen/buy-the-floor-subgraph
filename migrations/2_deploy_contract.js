@@ -1,5 +1,5 @@
-const GravatarRegistry = artifacts.require('./GravatarRegistry.sol')
+const BuyTheFloor = artifacts.require('./BuyTheFloor.sol')
 
 module.exports = async function(deployer) {
-  await deployer.deploy(GravatarRegistry)
+  await deployer.deploy(BuyTheFloor)
 }
